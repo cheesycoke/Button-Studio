@@ -1,0 +1,461 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://screens/TestSpace.gd" type="Script" id=1]
+[ext_resource path="res://screens/Control.gd" type="Script" id=2]
+[ext_resource path="res://screens/Viewport.gd" type="Script" id=3]
+[ext_resource path="res://OpenSans-ExtraBold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://addons/ActionIcon/ActionIcon.gd" type="Script" id=5]
+[ext_resource path="res://addons/ActionIcon/Keyboard/Blank.png" type="Texture" id=6]
+[ext_resource path="res://enterfield.tscn" type="PackedScene" id=7]
+[ext_resource path="res://screens/PBGPicker.gd" type="Script" id=8]
+[ext_resource path="res://gfx/glyphs/_arrowR.png" type="Texture" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+extra_spacing_char = -4
+font_data = ExtResource( 4 )
+
+[node name="TestSpace" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = 192.0
+margin_top = 184.0
+margin_right = 320.0
+margin_bottom = 312.0
+color = Color( 0.227451, 0.227451, 0.227451, 1 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 0.267
+anchor_bottom = 0.5
+margin_left = 192.0
+margin_top = -116.0
+margin_right = 46.592
+margin_bottom = 12.0
+
+[node name="Viewport" type="Viewport" parent="ViewportContainer"]
+size = Vector2( 128, 128 )
+own_world = true
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 3
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="ViewportContainer/Viewport"]
+margin_left = 64.0
+margin_top = 64.0
+margin_right = 64.0
+margin_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="ViewportContainer/Viewport/Control"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.737255, 0.47451, 0.47451, 1 )
+
+[node name="Label" type="Label" parent="ViewportContainer/Viewport/Control"]
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 23, 33 )
+custom_constants/line_spacing = -24
+custom_fonts/font = SubResource( 1 )
+text = "M"
+valign = 1
+
+[node name="Sprite" type="Sprite" parent="ViewportContainer/Viewport/Control"]
+visible = false
+scale = Vector2( 0.32, 0.32 )
+texture = ExtResource( 9 )
+
+[node name="Round" type="HSlider" parent="."]
+margin_left = 512.0
+margin_top = 152.0
+margin_right = 872.0
+margin_bottom = 168.0
+max_value = 60.0
+
+[node name="manual" parent="Round" instance=ExtResource( 7 )]
+
+[node name="Label" type="Label" parent="Round"]
+margin_top = -24.0
+margin_right = 192.0
+margin_bottom = -8.0
+text = "Corner Rounding"
+
+[node name="smooth" type="CheckBox" parent="Round"]
+margin_left = 72.0
+margin_top = 24.0
+margin_right = 152.0
+margin_bottom = 48.0
+pressed = true
+text = "Smooth"
+
+[node name="gamepadsmooth" type="CheckBox" parent="Round"]
+margin_left = 160.0
+margin_top = 24.0
+margin_right = 240.0
+margin_bottom = 48.0
+hint_tooltip = "Automatically round gamepad buttons into circles"
+pressed = true
+text = "Round GP"
+
+[node name="Stroke" type="HSlider" parent="."]
+margin_left = 512.0
+margin_top = 240.0
+margin_right = 872.0
+margin_bottom = 256.0
+
+[node name="Label" type="Label" parent="Stroke"]
+margin_top = -24.0
+margin_right = 192.0
+margin_bottom = -8.0
+text = "Stroke Width"
+
+[node name="blur" type="CheckBox" parent="Stroke"]
+margin_left = 72.0
+margin_top = 24.0
+margin_right = 160.0
+margin_bottom = 48.0
+text = "Blur"
+
+[node name="manual" parent="Stroke" instance=ExtResource( 7 )]
+
+[node name="ShadowDistX" type="HSlider" parent="."]
+margin_left = 512.0
+margin_top = 328.0
+margin_right = 680.0
+margin_bottom = 344.0
+min_value = -20.0
+max_value = 20.0
+
+[node name="ShadowDistY" type="HSlider" parent="ShadowDistX"]
+margin_left = 192.0
+margin_right = 360.0
+margin_bottom = 16.0
+min_value = -20.0
+max_value = 20.0
+
+[node name="manual" parent="ShadowDistX/ShadowDistY" instance=ExtResource( 7 )]
+
+[node name="Label" type="Label" parent="ShadowDistX"]
+margin_top = -24.0
+margin_right = 192.0
+margin_bottom = -8.0
+text = "Shadow Offset"
+
+[node name="manual" parent="ShadowDistX" instance=ExtResource( 7 )]
+
+[node name="TiltH" type="HSlider" parent="."]
+margin_left = 512.0
+margin_top = 416.0
+margin_right = 680.0
+margin_bottom = 432.0
+min_value = -0.5
+max_value = 0.5
+step = 0.01
+
+[node name="TiltV" type="HSlider" parent="TiltH"]
+margin_left = 192.0
+margin_right = 360.0
+margin_bottom = 16.0
+min_value = -0.5
+max_value = 0.5
+step = 0.01
+
+[node name="manual" parent="TiltH/TiltV" instance=ExtResource( 7 )]
+
+[node name="Label" type="Label" parent="TiltH"]
+margin_top = -24.0
+margin_right = 160.0
+margin_bottom = -8.0
+text = "Skew"
+
+[node name="manual" parent="TiltH" instance=ExtResource( 7 )]
+
+[node name="Export" type="Button" parent="."]
+margin_left = 512.0
+margin_top = 488.0
+margin_right = 648.0
+margin_bottom = 536.0
+text = "EXPORT"
+
+[node name="ActionIcon" type="TextureRect" parent="."]
+margin_left = -480.0
+margin_top = 448.0
+margin_right = -400.0
+margin_bottom = 528.0
+rect_min_size = Vector2( 80, 0 )
+texture = ExtResource( 6 )
+expand = true
+stretch_mode = 6
+script = ExtResource( 5 )
+action_name = "testaction"
+
+[node name="BGPicker" type="ColorPickerButton" parent="."]
+margin_left = 896.0
+margin_top = 152.0
+margin_right = 976.0
+margin_bottom = 200.0
+rect_pivot_offset = Vector2( 24, 30 )
+
+[node name="Label" type="Label" parent="BGPicker"]
+margin_top = -24.0
+margin_right = 168.0
+margin_bottom = -8.0
+text = "BG"
+
+[node name="PBGPicker" type="ColorPickerButton" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -832.0
+margin_top = 188.0
+margin_right = -704.0
+margin_bottom = 236.0
+rect_pivot_offset = Vector2( 128, 32 )
+edit_alpha = false
+script = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="PBGPicker"]
+margin_top = -24.0
+margin_right = 128.0
+margin_bottom = -8.0
+text = "Preview BG"
+
+[node name="StrokePicker" type="ColorPickerButton" parent="."]
+margin_left = 896.0
+margin_top = 240.0
+margin_right = 976.0
+margin_bottom = 288.0
+color = Color( 1, 1, 1, 1 )
+
+[node name="Label" type="Label" parent="StrokePicker"]
+margin_top = -24.0
+margin_right = 192.0
+margin_bottom = -8.0
+text = "Stroke"
+
+[node name="ShadowPicker" type="ColorPickerButton" parent="."]
+margin_left = 896.0
+margin_top = 328.0
+margin_right = 976.0
+margin_bottom = 376.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="Label" type="Label" parent="ShadowPicker"]
+margin_top = -24.0
+margin_right = 192.0
+margin_bottom = -8.0
+text = "Shadow"
+
+[node name="TextPicker" type="ColorPickerButton" parent="."]
+margin_left = 896.0
+margin_top = 416.0
+margin_right = 976.0
+margin_bottom = 464.0
+color = Color( 1, 1, 1, 1 )
+
+[node name="Label" type="Label" parent="TextPicker"]
+margin_top = -24.0
+margin_right = 192.0
+margin_bottom = -8.0
+text = "Text"
+
+[node name="PreviewSelect" type="OptionButton" parent="."]
+margin_left = 192.0
+margin_top = 328.0
+margin_right = 320.0
+margin_bottom = 352.0
+text = "Single Letter"
+items = [ "Single Letter", null, false, 0, null, "Prt Scrn", null, false, 1, null, "BackSpace", null, false, 2, null, "Num Enter", null, false, 3, null, "Gamepad A", null, false, 4, null ]
+selected = 0
+
+[node name="FontControls" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="LoadFont" type="Button" parent="FontControls"]
+margin_left = 512.0
+margin_top = 48.0
+margin_right = 632.0
+margin_bottom = 72.0
+text = "Load Font"
+
+[node name="ResetFont" type="Button" parent="FontControls"]
+margin_left = 512.0
+margin_top = 80.0
+margin_right = 632.0
+margin_bottom = 104.0
+text = "Default Font"
+
+[node name="FontSize" type="SpinBox" parent="FontControls"]
+margin_left = 648.0
+margin_top = 80.0
+margin_right = 722.0
+margin_bottom = 104.0
+min_value = 6.0
+max_value = 1000.0
+value = 48.0
+suffix = "px"
+
+[node name="Label" type="Label" parent="FontControls/FontSize"]
+margin_top = -32.0
+margin_right = 72.0
+margin_bottom = -8.0
+text = "Size"
+valign = 2
+
+[node name="HSpace" type="SpinBox" parent="FontControls"]
+margin_left = 736.0
+margin_top = 80.0
+margin_right = 810.0
+margin_bottom = 104.0
+min_value = -500.0
+max_value = 500.0
+value = -4.0
+suffix = "px"
+
+[node name="Label" type="Label" parent="FontControls/HSpace"]
+margin_top = -32.0
+margin_right = 72.0
+margin_bottom = -8.0
+text = "HSpacing"
+valign = 2
+
+[node name="VSpace" type="SpinBox" parent="FontControls"]
+margin_left = 824.0
+margin_top = 80.0
+margin_right = 898.0
+margin_bottom = 104.0
+min_value = -500.0
+max_value = 500.0
+value = -24.0
+suffix = "px"
+
+[node name="Label" type="Label" parent="FontControls/VSpace"]
+margin_top = -32.0
+margin_right = 72.0
+margin_bottom = -8.0
+text = "VSpacing"
+valign = 2
+
+[node name="ExportList" type="Control" parent="."]
+margin_left = 656.0
+margin_top = 488.0
+margin_right = 920.0
+margin_bottom = 536.0
+
+[node name="Label" type="Label" parent="ExportList"]
+margin_left = 8.0
+margin_right = 160.0
+margin_bottom = 14.0
+text = "Export options:"
+uppercase = true
+
+[node name="keyboard" type="CheckBox" parent="ExportList"]
+margin_left = 8.0
+margin_top = 16.0
+margin_right = 160.0
+margin_bottom = 40.0
+pressed = true
+text = "Keyboard"
+
+[node name="gamepad" type="CheckBox" parent="ExportList"]
+margin_left = 104.0
+margin_top = 16.0
+margin_right = 226.0
+margin_bottom = 40.0
+pressed = true
+text = "Gamepad Face"
+
+[node name="gamepad2" type="CheckBox" parent="ExportList"]
+margin_left = 104.0
+margin_top = 40.0
+margin_right = 234.0
+margin_bottom = 64.0
+pressed = true
+text = "Gamepad Other"
+
+[node name="open" type="CheckBox" parent="ExportList"]
+margin_left = -144.0
+margin_top = 52.0
+margin_right = 88.0
+margin_bottom = 96.0
+pressed = true
+text = "Open After Completion"
+
+[node name="FontLoader" type="FileDialog" parent="."]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 1008.0
+margin_bottom = 576.0
+popup_exclusive = true
+window_title = "Open a File"
+dialog_text = "If you use fonts you're not allowed to use, God will kill you "
+mode = 0
+access = 2
+filters = PoolStringArray( "*.ttf", "*.otf" )
+
+[node name="ExportFolder" type="FileDialog" parent="."]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 1008.0
+margin_bottom = 576.0
+popup_exclusive = true
+window_title = "Open a Directory"
+mode = 2
+access = 2
+
+[node name="SaveFile" type="FileDialog" parent="."]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 1008.0
+margin_bottom = 576.0
+popup_exclusive = true
+window_title = "Save Button Style"
+access = 2
+
+[node name="LoadFile" type="FileDialog" parent="."]
+margin_left = 16.0
+margin_top = 32.0
+margin_right = 1008.0
+margin_bottom = 576.0
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+access = 2
+
+[connection signal="value_changed" from="Round" to="ViewportContainer/Viewport/Control" method="_on_Round_value_changed"]
+[connection signal="toggled" from="Round/smooth" to="ViewportContainer/Viewport/Control" method="_on_smooth_toggled"]
+[connection signal="toggled" from="Round/gamepadsmooth" to="ViewportContainer/Viewport/Control" method="_on_gamepadsmooth_toggled"]
+[connection signal="value_changed" from="Stroke" to="ViewportContainer/Viewport/Control" method="_on_Stroke_value_changed"]
+[connection signal="toggled" from="Stroke/blur" to="ViewportContainer/Viewport/Control" method="_on_blur_toggled"]
+[connection signal="value_changed" from="ShadowDistX" to="ViewportContainer/Viewport/Control" method="_on_ShadowDist_value_changed"]
+[connection signal="value_changed" from="ShadowDistX/ShadowDistY" to="ViewportContainer/Viewport/Control" method="_on_ShadowDistY_value_changed"]
+[connection signal="value_changed" from="TiltH" to="ViewportContainer/Viewport/Control" method="_on_Tilt_value_changed"]
+[connection signal="value_changed" from="TiltH/TiltV" to="ViewportContainer/Viewport/Control" method="_on_TiltV_value_changed"]
+[connection signal="pressed" from="Export" to="ViewportContainer/Viewport" method="_on_Button_pressed"]
+[connection signal="color_changed" from="BGPicker" to="ViewportContainer/Viewport/Control" method="_on_BGPicker_color_changed"]
+[connection signal="color_changed" from="PBGPicker" to="PBGPicker" method="_on_PBGPicker_color_changed"]
+[connection signal="color_changed" from="StrokePicker" to="ViewportContainer/Viewport/Control" method="_on_StrokePicker_color_changed"]
+[connection signal="color_changed" from="ShadowPicker" to="ViewportContainer/Viewport/Control" method="_on_ShadowPicker_color_changed"]
+[connection signal="color_changed" from="TextPicker" to="ViewportContainer/Viewport/Control" method="_on_TextPicker_color_changed"]
+[connection signal="item_selected" from="PreviewSelect" to="ViewportContainer/Viewport" method="_on_PreviewSelect_item_selected"]
+[connection signal="pressed" from="FontControls/LoadFont" to="ViewportContainer/Viewport/Control" method="_on_LoadFont_pressed"]
+[connection signal="pressed" from="FontControls/ResetFont" to="ViewportContainer/Viewport/Control" method="_on_ResetFont_pressed"]
+[connection signal="value_changed" from="FontControls/FontSize" to="ViewportContainer/Viewport/Control" method="_on_SpinBox_value_changed"]
+[connection signal="value_changed" from="FontControls/HSpace" to="ViewportContainer/Viewport/Control" method="_on_HSpace_value_changed"]
+[connection signal="value_changed" from="FontControls/VSpace" to="ViewportContainer/Viewport/Control" method="_on_VSpace_value_changed"]
+[connection signal="file_selected" from="FontLoader" to="ViewportContainer/Viewport/Control" method="_on_FontLoader_file_selected"]
+[connection signal="dir_selected" from="ExportFolder" to="ViewportContainer/Viewport" method="_on_ExportFolder_dir_selected"]
+[connection signal="file_selected" from="ExportFolder" to="ViewportContainer/Viewport" method="_on_ExportFolder_file_selected"]
