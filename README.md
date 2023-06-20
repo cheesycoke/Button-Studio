@@ -1,4 +1,4 @@
-# Button-Studio
+# Button Studio
 
 ![ButtonStudio](https://github.com/cheesycoke/Button-Studio/assets/91025560/e94f717b-16ff-4f2d-a84b-086ada9cc65b)
 
