@@ -4,7 +4,7 @@
 
 hiiii omg hiiiiiii!!!!
 
-So Button Studio is a program created in the Godot Engine to quickly and easily generate a lot of button prompts in the form of 128x128 png files. It creates most necessary keyboard keys, buttons for most popular gamepads which use letters, and a few extra bits.
+So Button Studio is a program created in the Godot Engine 3.5.1 to quickly and easily generate a lot of button prompts in the form of 128x128 png files. It creates most necessary keyboard keys, buttons for most popular gamepads which use letters, and a few extra bits.
 It accomplishes this using Godot's StyleBoxFlat system to draw the back of the prompt, and then puts text on top of it for relevant keys/buttons.
 It's very incomplete in its current state, alongside having very sloppy code, but it can overall get the job done and save time creating button prompts that may be in line with your game's aesthetic.
 
